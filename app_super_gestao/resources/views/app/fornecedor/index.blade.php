@@ -4,14 +4,18 @@
 
 @php
     
+    
 @endphp
 
-
-
-@if(count($fornecedores) > 0 && count($fornecedores) < 10)
-    <h3>Existem alguns fornecedores</h3>
-@elseif(count($fornecedores) > 10)
-    <h3>Existem varios fornecedores</h3>
-@else
-    <h3>Ainda nao existem fornecedores</h3>
-@endif
+@isset($fornecedores)
+    @for($i = 0; isset($fornecedores[$i]); $i++)
+        Fornecedor {{ $fornecedores[$i]['nome'] }}
+        <br>
+        Status {{$fornecedores[$i]['status']}}
+        <br>
+        CNPJ {{  $fornecedores[$i]['cnpj'] ?? 'Dado nao preenchido'}}
+        <br>
+        Telefone ({{  $fornecedores[$i]['ddd'] ?? ''}}) {{ $fornecedores[$i]['telefone'] ?? ''}}
+        <hr>
+    @endfor
+@endisset
